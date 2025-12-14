@@ -1,0 +1,142 @@
+[run.sh] Starting full pipeline run at 2025-12-14T10:08:17+00:00
+2025-12-14 10:08:29,614 - INFO - ==== Legal Text Decoder - PREPROCESS START ====
+2025-12-14 10:08:29,620 - INFO - CONFIGURATION
+2025-12-14 10:08:29,620 - INFO -   RAW_DATA_DIR=/app/data/raw/legal_text_decoder/legaltextdecoder
+2025-12-14 10:08:29,620 - INFO -   PROCESSED_DATA_DIR=/app/data/processed/legal_text_decoder
+2025-12-14 10:08:29,620 - INFO -   TRAIN_RATIO=0.7 | VAL_RATIO=0.15 | TEST_RATIO=0.15
+2025-12-14 10:08:29,638 - INFO - DATA: no raw JSON found -> downloading dataset ZIP
+2025-12-14 10:08:33,446 - INFO - LOADING RESULT
+2025-12-14 10:08:33,447 - INFO -   loaded_samples_total=6338
+2025-12-14 10:08:33,447 - INFO -   loaded_samples_consensus=2591
+2025-12-14 10:08:33,447 - INFO -   loaded_samples_other=3747
+/app/src/01-data-preprocessing.py:256: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+  df_all.groupby("text_norm", as_index=False)
+2025-12-14 10:08:37,785 - INFO - DEDUPLICATION
+2025-12-14 10:08:37,786 - INFO -   rows_before=6338
+2025-12-14 10:08:37,786 - INFO -   unique_texts_before=3606
+2025-12-14 10:08:37,786 - INFO -   rows_after=3606
+2025-12-14 10:08:37,786 - INFO -   removed_duplicates=2732
+2025-12-14 10:08:37,786 - INFO -   label_dist_before=Counter({3: 1932, 4: 1893, 2: 1407, 1: 783, 0: 323})
+2025-12-14 10:08:37,786 - INFO -   label_dist_after=Counter({3: 1126, 4: 1118, 2: 772, 1: 414, 0: 176})
+2025-12-14 10:08:37,817 - INFO - SPLIT RESULT
+2025-12-14 10:08:37,817 - INFO -   train_n=2524 | val_n=541 | test_n=541
+2025-12-14 10:08:37,818 - INFO -   train_label_dist=Counter({4: 814, 3: 780, 2: 534, 1: 282, 0: 114})
+2025-12-14 10:08:37,819 - INFO -   val_label_dist=Counter({4: 174, 3: 167, 2: 115, 1: 60, 0: 25})
+2025-12-14 10:08:37,821 - INFO -   test_label_dist=Counter({3: 179, 4: 130, 2: 123, 1: 72, 0: 37})
+2025-12-14 10:08:37,997 - INFO - OUTPUT
+2025-12-14 10:08:37,997 - INFO -   saved_train=/app/data/processed/legal_text_decoder/train.csv
+2025-12-14 10:08:37,997 - INFO -   saved_val=/app/data/processed/legal_text_decoder/val.csv
+2025-12-14 10:08:37,997 - INFO -   saved_test=/app/data/processed/legal_text_decoder/test.csv
+2025-12-14 10:08:37,997 - INFO - ==== Legal Text Decoder - PREPROCESS DONE ====
+2025-12-14 10:08:45,445 - INFO - ==== Legal Text Decoder - TRAINING START ====
+2025-12-14 10:08:45,446 - INFO - CONFIGURATION
+2025-12-14 10:08:45,446 - INFO -   BATCH_SIZE=32
+2025-12-14 10:08:45,446 - INFO -   BIDIRECTIONAL=True
+2025-12-14 10:08:45,446 - INFO -   CNN_KERNEL_SIZES=[3, 4, 5]
+2025-12-14 10:08:45,446 - INFO -   CNN_NUM_FILTERS=64
+2025-12-14 10:08:45,446 - INFO -   DROPOUT=0.4
+2025-12-14 10:08:45,446 - INFO -   EMBED_DIM=64
+2025-12-14 10:08:45,446 - INFO -   GRAD_CLIP_NORM=1.0
+2025-12-14 10:08:45,446 - INFO -   HIDDEN_DIM=32
+2025-12-14 10:08:45,447 - INFO -   LEARNING_RATE=0.0003
+2025-12-14 10:08:45,447 - INFO -   LSTM_HIDDEN_DIM=64
+2025-12-14 10:08:45,447 - INFO -   LSTM_NUM_LAYERS=1
+2025-12-14 10:08:45,447 - INFO -   MAX_LEN=128
+2025-12-14 10:08:45,447 - INFO -   MAX_VOCAB_SIZE=20000
+2025-12-14 10:08:45,447 - INFO -   MIN_FREQ=1
+2025-12-14 10:08:45,447 - INFO -   MODEL_TYPE=bilstm_attn
+2025-12-14 10:08:45,447 - INFO -   NUM_CLASSES=5
+2025-12-14 10:08:45,447 - INFO -   NUM_EPOCHS=25
+2025-12-14 10:08:45,447 - INFO -   PATIENCE=5
+2025-12-14 10:08:45,447 - INFO -   SAVE_BASELINE_CSV=True
+2025-12-14 10:08:45,447 - INFO -   SEED=42
+2025-12-14 10:08:45,447 - INFO -   USE_CLASS_WEIGHTS=True
+2025-12-14 10:08:45,447 - INFO -   WEIGHT_DECAY=0.0001
+2025-12-14 10:08:45,547 - INFO - DATA LOADING
+2025-12-14 10:08:45,547 - INFO -   train_csv=/app/data/processed/legal_text_decoder/train.csv | n=2524
+2025-12-14 10:08:45,547 - INFO -   val_csv=/app/data/processed/legal_text_decoder/val.csv     | n=541
+2025-12-14 10:08:45,548 - INFO -   train_label_dist=Counter({4: 814, 3: 780, 2: 534, 1: 282, 0: 114})
+2025-12-14 10:08:45,549 - INFO -   val_label_dist=Counter({4: 174, 3: 167, 2: 115, 1: 60, 0: 25})
+2025-12-14 10:08:45,565 - INFO - BASELINE (rule-based)
+2025-12-14 10:08:45,566 - INFO -   val_accuracy=0.2274
+2025-12-14 10:08:45,584 - INFO -   saved=/app/data/processed/legal_text_decoder/val_with_baseline.csv
+2025-12-14 10:08:45,733 - INFO - VOCAB
+2025-12-14 10:08:45,733 - INFO -   vocab_size=17430
+2025-12-14 10:08:45,733 - INFO -   vocab_path=/app/data/processed/legal_text_decoder/vocab.txt
+2025-12-14 10:08:45,733 - INFO -   pad_idx=0 | unk_idx=1
+2025-12-14 10:08:45,828 - INFO - MODEL ARCHITECTURE
+2025-12-14 10:08:45,829 - INFO - TinyLegalTextBiLSTMAttn(
+  (embedding): Embedding(17430, 64, padding_idx=0)
+  (lstm): LSTM(64, 64, batch_first=True, bidirectional=True)
+  (attention): Attention(
+    (attn): Linear(in_features=128, out_features=1, bias=True)
+  )
+  (dropout): Dropout(p=0.4, inplace=False)
+  (fc): Linear(in_features=128, out_features=5, bias=True)
+)
+2025-12-14 10:08:45,829 - INFO -   params_trainable=1182854 | params_non_trainable=0 | params_total=1182854
+2025-12-14 10:08:45,829 - INFO -   device=cpu
+2025-12-14 10:08:45,863 - INFO - CLASS WEIGHTS
+2025-12-14 10:08:45,863 - INFO -   class_counts=Counter({4: 814, 3: 780, 2: 534, 1: 282, 0: 114})
+2025-12-14 10:08:45,866 - INFO -   class_weights=[1.7517000436782837, 1.113700032234192, 0.8094000220298767, 0.669700026512146, 0.6554999947547913]
+2025-12-14 10:08:50,239 - INFO - TRAINING PROGRESS
+2025-12-14 10:09:06,506 - INFO - Epoch 001 | train_loss=1.5838, train_acc=0.2948 | val_loss=1.5647, val_acc=0.3327
+2025-12-14 10:09:06,583 - INFO - CHECKPOINT: saved best_model.pt (epoch=1, val_loss=1.5647)
+2025-12-14 10:09:17,174 - INFO - Epoch 002 | train_loss=1.5568, train_acc=0.3391 | val_loss=1.5538, val_acc=0.3438
+2025-12-14 10:09:17,213 - INFO - CHECKPOINT: saved best_model.pt (epoch=2, val_loss=1.5538)
+2025-12-14 10:09:27,035 - INFO - Epoch 003 | train_loss=1.5467, train_acc=0.3574 | val_loss=1.5457, val_acc=0.3494
+2025-12-14 10:09:27,057 - INFO - CHECKPOINT: saved best_model.pt (epoch=3, val_loss=1.5457)
+2025-12-14 10:09:40,936 - INFO - Epoch 004 | train_loss=1.4955, train_acc=0.3875 | val_loss=1.4560, val_acc=0.3752
+2025-12-14 10:09:40,969 - INFO - CHECKPOINT: saved best_model.pt (epoch=4, val_loss=1.4560)
+2025-12-14 10:10:08,530 - INFO - Epoch 005 | train_loss=1.4744, train_acc=0.3903 | val_loss=1.4420, val_acc=0.3956
+2025-12-14 10:10:08,717 - INFO - CHECKPOINT: saved best_model.pt (epoch=5, val_loss=1.4420)
+2025-12-14 10:10:18,999 - INFO - Epoch 006 | train_loss=1.4169, train_acc=0.4378 | val_loss=1.4164, val_acc=0.4233
+2025-12-14 10:10:19,034 - INFO - CHECKPOINT: saved best_model.pt (epoch=6, val_loss=1.4164)
+2025-12-14 10:10:28,878 - INFO - Epoch 007 | train_loss=1.3800, train_acc=0.4469 | val_loss=1.3893, val_acc=0.4270
+2025-12-14 10:10:28,924 - INFO - CHECKPOINT: saved best_model.pt (epoch=7, val_loss=1.3893)
+2025-12-14 10:10:39,270 - INFO - Epoch 008 | train_loss=1.3500, train_acc=0.4477 | val_loss=1.3708, val_acc=0.4325
+2025-12-14 10:10:39,308 - INFO - CHECKPOINT: saved best_model.pt (epoch=8, val_loss=1.3708)
+2025-12-14 10:10:48,819 - INFO - Epoch 009 | train_loss=1.3255, train_acc=0.4588 | val_loss=1.3710, val_acc=0.4104
+2025-12-14 10:10:57,734 - INFO - Epoch 010 | train_loss=1.3042, train_acc=0.4568 | val_loss=1.3664, val_acc=0.4214
+2025-12-14 10:10:57,757 - INFO - CHECKPOINT: saved best_model.pt (epoch=10, val_loss=1.3664)
+2025-12-14 10:11:07,671 - INFO - Epoch 011 | train_loss=1.2874, train_acc=0.4727 | val_loss=1.3706, val_acc=0.4122
+2025-12-14 10:11:17,181 - INFO - Epoch 012 | train_loss=1.2741, train_acc=0.4727 | val_loss=1.3701, val_acc=0.4307
+2025-12-14 10:11:28,269 - INFO - Epoch 013 | train_loss=1.2492, train_acc=0.4766 | val_loss=1.3881, val_acc=0.4196
+2025-12-14 10:11:38,637 - INFO - Epoch 014 | train_loss=1.2297, train_acc=0.4948 | val_loss=1.3910, val_acc=0.4085
+2025-12-14 10:11:50,134 - INFO - Epoch 015 | train_loss=1.1948, train_acc=0.5091 | val_loss=1.4266, val_acc=0.4307
+2025-12-14 10:11:50,134 - INFO - EARLY STOPPING: patience=5 reached (best_epoch=10, best_val_loss=1.3664)
+2025-12-14 10:11:50,134 - INFO - TRAINING FINISHED
+2025-12-14 10:11:50,134 - INFO -   epochs_ran=15
+2025-12-14 10:11:50,134 - INFO -   best_epoch=10
+2025-12-14 10:11:50,134 - INFO -   best_val_loss=1.3664
+2025-12-14 10:11:50,135 - INFO -   best_model_path=/app/models/best_model.pt
+2025-12-14 10:11:50,135 - INFO - ==== Legal Text Decoder - TRAINING DONE ====
+2025-12-14 10:12:12,593 - INFO - ==== Legal Text Decoder - EVALUATION (TEST) START ====
+2025-12-14 10:12:12,661 - INFO - Test samples: 541
+2025-12-14 10:12:12,667 - INFO - Test label eloszlás: Counter({3: 179, 4: 130, 2: 123, 1: 72, 0: 37})
+2025-12-14 10:12:12,706 - INFO - Vocab méret: 17430
+2025-12-14 10:12:12,707 - INFO - pad_idx: 0
+2025-12-14 10:12:12,707 - INFO - Használt device: cpu
+2025-12-14 10:12:12,952 - INFO - Best model weights betöltve.
+2025-12-14 10:12:13,865 - INFO - TEST loss: 1.4312 | TEST accuracy: 0.3752
+2025-12-14 10:12:13,865 - INFO - Classification report (TEST):
+2025-12-14 10:12:13,903 - INFO -               precision    recall  f1-score   support
+2025-12-14 10:12:13,903 - INFO - 
+2025-12-14 10:12:13,903 - INFO -      class_0     0.0000    0.0000    0.0000        37
+2025-12-14 10:12:13,904 - INFO -      class_1     0.1875    0.2500    0.2143        72
+2025-12-14 10:12:13,904 - INFO -      class_2     0.2472    0.1789    0.2075       123
+2025-12-14 10:12:13,904 - INFO -      class_3     0.4149    0.4358    0.4251       179
+2025-12-14 10:12:13,905 - INFO -      class_4     0.5060    0.6538    0.5705       130
+2025-12-14 10:12:13,905 - INFO - 
+2025-12-14 10:12:13,905 - INFO -     accuracy                         0.3752       541
+2025-12-14 10:12:13,905 - INFO -    macro avg     0.2711    0.3037    0.2835       541
+2025-12-14 10:12:13,906 - INFO - weighted avg     0.3400    0.3752    0.3534       541
+2025-12-14 10:12:13,912 - INFO - Confusion matrix (rows=true, cols=pred):
+2025-12-14 10:12:13,913 - INFO - 
+[[ 0 19  7  6  5]
+ [ 0 18 18 27  9]
+ [ 0 20 22 49 32]
+ [ 0 32 32 78 37]
+ [ 0  7 10 28 85]]
+2025-12-14 10:12:13,913 - INFO - ==== Legal Text Decoder - EVALUATION (TEST) DONE ====
+[run.sh] Pipeline finished at 2025-12-14T10:12:14+00:00

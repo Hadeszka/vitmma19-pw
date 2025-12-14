@@ -15,9 +15,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY src/ src/
 COPY notebook/ notebook/
 COPY run.sh run.sh
+RUN sed -i 's/\r$//' /app/run.sh
 
 # Create a directory for data (to be mounted)
-RUN mkdir -p /app/data
 RUN chmod +x /app/run.sh || true
 
 # Set the entrypoint to run the training script by default
